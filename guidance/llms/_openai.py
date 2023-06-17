@@ -41,7 +41,7 @@ async def add_text_to_chat_mode_generator(chat_mode):
     async for resp in chat_mode:
         if "choices" in resp:
             for c in resp['choices']:
-                if "content" in c['delta']:
+                if "content" in c['delta'] and len(c['delta']['content']) > 0:
                     c['text'] = c['delta']['content']
                 else:
                     break # the role markers are outside the generation in chat mode right now TODO: consider how this changes for uncontrained generation
